@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "mikestead.dotenv",
+    "dsznajder.es7-react-js-snippets",
+    "ms-vscode.js-debug"
+  ]
+}
