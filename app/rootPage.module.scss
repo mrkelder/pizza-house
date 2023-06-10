@@ -65,10 +65,6 @@
       color: $secondary-color;
       background-color: $primary-color;
     }
-
-    &:focus {
-      outline: thick double $primary-color;
-    }
   }
 }
 

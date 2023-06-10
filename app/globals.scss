@@ -1,4 +1,11 @@
+@import "variables";
+
 body {
   margin: 0;
   padding: 0;
+}
+
+*:focus {
+  outline: thick double $primary-color;
+  transition: outline 0.2s;
 }
