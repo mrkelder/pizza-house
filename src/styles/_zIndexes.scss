@@ -1,0 +1,9 @@
+$first-layer: 1;
+$second-layer: 2;
+$third-layer: 3;
+
+:export {
+  firstLayer: $first-layer;
+  secondLayer: $second-layer;
+  thirdLayer: $third-layer;
+}
