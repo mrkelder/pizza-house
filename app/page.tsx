@@ -1,9 +1,14 @@
 import Image from "next/image"
-import styles from "./homePage.module.scss"
+import styles from "./rootPage.module.scss"
 
 export default function Home() {
   return (
     <main className={styles.main}>
+      <div className={styles.titleBox}>
+        <h1>The ultimate pizza builder to create your own 🍕😎</h1>
+        <button>Start</button>
+      </div>
+
       <div className={styles.pizza_image_cropper}>
         <div className={styles.pizza_image_wrapper}>
           <Image fill src="/complete_pizza.png" alt="pepperoni pizza" />
