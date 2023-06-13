@@ -1,0 +1,73 @@
+@import "themeColors";
+@import "zIndexes";
+
+@mixin square_sizes($side-size) {
+  width: $side-size;
+  height: $side-size;
+}
+
+@mixin pizza_image_sizes {
+  @include square_sizes(320px);
+
+  @media (min-width: 425px) {
+    @include square_sizes(400px);
+  }
+
+  @media (min-width: 786px) {
+    @include square_sizes(525px);
+  }
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: 0 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleBox {
+  margin-top: 15vh;
+  z-index: $first-layer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  h1 {
+    font-size: 1.5rem;
+    max-width: 450px;
+    text-align: center;
+    margin: 0;
+    color: $primary-color;
+  }
+}
+
+.pizza_image_cropper {
+  @include pizza_image_sizes;
+
+  position: absolute;
+  overflow-y: hidden;
+  bottom: 0;
+}
+
+.pizza_image_wrapper {
+  @include pizza_image_sizes;
+
+  position: relative;
+  transform: translateY(150px);
+
+  @media (min-width: 425px) {
+    transform: translateY(175px);
+  }
+
+  @media (min-width: 786px) {
+    transform: translateY(275px);
+  }
+}
