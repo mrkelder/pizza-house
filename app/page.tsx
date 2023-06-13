@@ -1,3 +1,4 @@
+import { Button } from "@/src/components/Button"
 import Image from "next/image"
 import styles from "./rootPage.module.scss"
 
@@ -6,7 +7,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.titleBox}>
         <h1>The ultimate pizza builder to create your own 🍕😎</h1>
-        <button>Start</button>
+        <Button>Start</Button>
       </div>
 
       <div className={styles.pizza_image_cropper}>
