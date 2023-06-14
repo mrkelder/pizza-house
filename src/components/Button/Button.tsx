@@ -12,3 +12,7 @@ export const Button: FC<ButtonProps> = ({ children, ...buttonAttributes }) => {
     </button>
   )
 }
+
+Button.defaultProps = {
+  children: "Text"
+}
