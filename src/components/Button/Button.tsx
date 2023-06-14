@@ -1,10 +1,18 @@
-import { FC } from "react"
+import { ButtonHTMLAttributes, FC } from "react"
 import styles from "./button.module.scss"
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: string
 }
 
-export const Button: FC<ButtonProps> = ({ children }) => {
-  return <button className={styles.button}>{children}</button>
+export const Button: FC<ButtonProps> = ({ children, ...buttonAttributes }) => {
+  return (
+    <button {...buttonAttributes} className={styles.button}>
+      {children}
+    </button>
+  )
+}
+
+Button.defaultProps = {
+  children: "Text"
 }
