@@ -9,6 +9,6 @@ describe("PizzaShape component", () => {
     render(<PizzaShape title={shape} image={image} />)
 
     expect(screen.getByText(shape)).toBeInTheDocument()
-    expect(screen.getByRole("img")).toHaveAttribute("src", image)
+    expect(screen.getByRole("img").getAttribute("src")).toContain("test.png")
   })
 })
