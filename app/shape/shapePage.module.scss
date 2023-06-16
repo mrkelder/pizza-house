@@ -1,0 +1,9 @@
+@import "shared";
+
+.main {
+  @include main;
+}
+
+.h1 {
+  @include h1;
+}
