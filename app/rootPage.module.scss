@@ -26,6 +26,7 @@
 
 .main {
   @include main;
+  justify-content: center;
 }
 
 .titleBox {
