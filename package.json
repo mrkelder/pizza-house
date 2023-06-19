@@ -8,8 +8,9 @@
     "build:dev": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:components": "jest --env=jsdom",
-    "test:all": "yarn test:components"
+    "test:components": "jest src/components --env=jsdom",
+    "test:lib": "jest src/lib",
+    "test:all": "yarn test:components & yarn test:lib"
   },
   "dependencies": {
     "@types/node": "20.2.5",
