@@ -1,0 +1,31 @@
+@import "shared";
+
+.main {
+  @include main;
+  gap: 32px;
+}
+
+.h1 {
+  @include h1;
+}
+
+.pizzaShapesGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  justify-items: center;
+  max-width: 768px;
+
+  @media (min-width: 450px) {
+    & {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 610px) {
+    & {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

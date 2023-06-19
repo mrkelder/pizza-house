@@ -7,7 +7,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.titleBox}>
         <h1>The ultimate pizza builder to create your own 🍕😎</h1>
-        <Button>Start</Button>
+        <Button href="/shape">Start</Button>
       </div>
 
       <div className={styles.pizza_image_cropper}>
