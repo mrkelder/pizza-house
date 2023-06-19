@@ -1,5 +1,6 @@
 @import "themeColors";
 @import "zIndexes";
+@import "shared";
 
 @mixin square_sizes($side-size) {
   width: $side-size;
@@ -24,11 +25,8 @@
 }
 
 .main {
-  flex: 1;
-  padding: 0 14px;
-  display: flex;
+  @include main;
   justify-content: center;
-  align-items: center;
 }
 
 .titleBox {
@@ -41,11 +39,7 @@
   gap: 24px;
 
   h1 {
-    font-size: 1.5rem;
-    max-width: 450px;
-    text-align: center;
-    margin: 0;
-    color: $primary-color;
+    @include h1;
   }
 }
 

@@ -44,4 +44,10 @@ describe("Button component", () => {
     expect(mockFocus).toBeCalled()
     expect(mockKeyDown).toBeCalled()
   })
+
+  it("should render anchor instead of button", () => {
+    render(<Button href="/test">Test</Button>)
+
+    expect(screen.getByRole("link")).toHaveTextContent("Test")
+  })
 })
