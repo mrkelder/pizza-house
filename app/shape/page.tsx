@@ -7,7 +7,7 @@ export default function Shape() {
       <h1 className={styles.h1}>Select shape</h1>
 
       <div className={styles.pizzaShapesGrid}>
-        <PizzaShape image="/complete_pizza.png" title="Circle" />
+        <PizzaShape image="/complete_pizza.png" title="Circle" id="circle" />
       </div>
     </main>
   )

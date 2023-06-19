@@ -6,9 +6,10 @@ import styles from "./pizzaShape.module.scss"
 interface PizzaShapeProps {
   title: string
   image: string
+  id: string
 }
 
-export const PizzaShape: FC<PizzaShapeProps> = ({ image, title }) => {
+export const PizzaShape: FC<PizzaShapeProps> = ({ image, title, id }) => {
   return (
     <div className={styles.base}>
       <Image
@@ -19,7 +20,7 @@ export const PizzaShape: FC<PizzaShapeProps> = ({ image, title }) => {
         className={styles.image}
       />
       <b className={styles.title}>{title}</b>
-      <Button>Select</Button>
+      <Button href={`/shape/${id}`}>Select</Button>
     </div>
   )
 }
