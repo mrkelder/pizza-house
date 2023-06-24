@@ -1,0 +1,10 @@
+@import "shared";
+
+.main {
+  @include main;
+  gap: 32px;
+}
+
+.h1 {
+  @include h1;
+}
