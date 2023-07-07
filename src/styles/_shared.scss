@@ -9,6 +9,8 @@
 }
 
 @mixin main {
+  margin: auto;
+  max-width: 768px;
   flex: 1;
   padding: 0 14px;
   display: flex;
