@@ -5,7 +5,8 @@ interface PizzaToppingArguments {
 }
 
 export class PizzaTopping {
-  private static _id = 0
+  private static classId = 0
+  private instanceId: number
   public readonly img: string
   public readonly name: string
   public readonly price: number
@@ -14,10 +15,10 @@ export class PizzaTopping {
     this.img = img
     this.name = name
     this.price = price
-    PizzaTopping._id++
+    this.instanceId = PizzaTopping.classId++
   }
 
   get id(): string {
-    return `topping_${PizzaTopping._id}`
+    return `topping_${this.instanceId}`
   }
 }
