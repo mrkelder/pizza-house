@@ -12,10 +12,15 @@ interface PizzaToppingsSectionProps {
 
 const DEFAULT_TOPPING_INDEX = 0
 
+const defaultProps: PizzaToppingsSectionProps = {
+  name: "Category",
+  toppings: []
+}
+
 export const PizzaToppingsSection: FC<PizzaToppingsSectionProps> = ({
   name,
   toppings
-}) => {
+} = defaultProps) => {
   const [selectedToppingId, setSelectedToppingId] = useState(
     toppings[DEFAULT_TOPPING_INDEX].id
   )
@@ -52,9 +57,4 @@ export const PizzaToppingsSection: FC<PizzaToppingsSectionProps> = ({
       </div>
     </div>
   )
-}
-
-PizzaToppingsSection.defaultProps = {
-  name: "Category",
-  toppings: []
 }
