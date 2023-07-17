@@ -4,21 +4,34 @@ interface PizzaToppingArguments {
   price: number
 }
 
+export interface ToppingObject {
+  id: string
+  name: string
+  img: string
+  price: number
+}
+
 export class PizzaTopping {
   private static classId = 0
-  private instanceId: number
-  public readonly img: string
-  public readonly name: string
-  public readonly price: number
+
+  private readonly id: string
+  private readonly img: string
+  private readonly name: string
+  private readonly price: number
 
   constructor({ img, name, price }: PizzaToppingArguments) {
     this.img = img
     this.name = name
     this.price = price
-    this.instanceId = PizzaTopping.classId++
+    this.id = `topping_${PizzaTopping.classId++}`
   }
 
-  get id(): string {
-    return `topping_${this.instanceId}`
+  getToppingObject() {
+    return {
+      id: this.id,
+      name: this.name,
+      img: this.img,
+      price: this.price
+    }
   }
 }
