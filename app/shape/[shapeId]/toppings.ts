@@ -12,7 +12,7 @@ export const meatToppings = [
     name: "Chicken"
   }),
   new PizzaTopping({
-    img: "/pizza_builder/pepperoni",
+    img: "/pizza_builder/pepperoni.webp",
     price: 1.48,
     name: "Pepperoni"
   })
@@ -20,17 +20,27 @@ export const meatToppings = [
 
 export const vegetableToppings = [
   new PizzaTopping({
-    img: "/pizza_builder/peppers",
+    img: "/pizza_builder/peppers.png",
     price: 0.56,
     name: "Peppers"
   }),
   new PizzaTopping({
-    img: "/pizza_builder/red_onions.webp",
+    img: "/pizza_builder/red_onions.png",
     price: 0.16,
     name: "Red Onions"
   }),
   new PizzaTopping({
-    img: "/pizza_builder/tomatoes.webp",
+    img: "/pizza_builder/tomatoes.png",
+    price: 0.16,
+    name: "Tomatoes"
+  }),
+  new PizzaTopping({
+    img: "/pizza_builder/red_onions.png",
+    price: 0.16,
+    name: "Red Onions"
+  }),
+  new PizzaTopping({
+    img: "/pizza_builder/tomatoes.png",
     price: 0.16,
     name: "Tomatoes"
   })
@@ -43,13 +53,8 @@ export const otherToppings = [
     name: "Mushrooms"
   }),
   new PizzaTopping({
-    img: "/pizza_builder/olives.webp",
+    img: "/pizza_builder/olives.png",
     price: 0.16,
     name: "Olives"
-  }),
-  new PizzaTopping({
-    img: "/pizza_builder/pepperoni",
-    price: 1.48,
-    name: "Pepperoni"
   })
 ]
