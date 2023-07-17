@@ -1,6 +1,7 @@
 "use client"
 
 import { FC, useEffect, useRef, useState } from "react"
+import { env } from "@/src/lib/env"
 import styles from "./pizzaBuilderCanvas.module.scss"
 
 export const PizzaBuilderCanvas: FC = () => {
@@ -31,15 +32,22 @@ export const PizzaBuilderCanvas: FC = () => {
 
   useEffect(() => {
     if (canvasRef.current && isCanvasLoaded) {
+      // TODO: ugly code (function has to do 1 thing only)
       const ctx = canvasRef.current.getContext("2d") as CanvasRenderingContext2D
+      const pizzaBaseImage = new Image()
+      pizzaBaseImage.src = env.hostname + "pizza_builder/base.webp"
 
-      ctx.fillStyle = "rgb(200, 0, 0)"
-      ctx.fillRect(10, 10, 50, 50)
+      const drawPizzaBase = () => {
+        ctx.drawImage(pizzaBaseImage, 0, 0, canvasWidth, canvasHeight)
+      }
 
-      ctx.fillStyle = "rgba(0, 0, 200, 0.5)"
-      ctx.fillRect(30, 30, 50, 50)
+      pizzaBaseImage.addEventListener("load", drawPizzaBase)
+
+      return () => {
+        pizzaBaseImage.removeEventListener("load", drawPizzaBase)
+      }
     }
-  }, [isCanvasLoaded])
+  }, [canvasHeight, canvasWidth, isCanvasLoaded])
 
   return (
     <div className={styles.canvasWrapper} ref={canvasWrapperRef}>
