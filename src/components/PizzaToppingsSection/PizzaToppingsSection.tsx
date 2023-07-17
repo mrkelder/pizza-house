@@ -10,8 +10,6 @@ interface PizzaToppingsSectionProps {
   toppings: ToppingObject[]
 }
 
-const DEFAULT_TOPPING_INDEX = 0
-
 const defaultProps: PizzaToppingsSectionProps = {
   name: "Category",
   toppings: []
@@ -21,9 +19,7 @@ export const PizzaToppingsSection: FC<PizzaToppingsSectionProps> = ({
   name,
   toppings
 } = defaultProps) => {
-  const [selectedToppingId, setSelectedToppingId] = useState(
-    toppings[DEFAULT_TOPPING_INDEX].id
-  )
+  const [selectedToppingId, setSelectedToppingId] = useState("non-existant-id")
 
   const onLabelInputChange = (id: string) => () => setSelectedToppingId(id)
 
