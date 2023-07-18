@@ -9,7 +9,7 @@ interface CanvasDataProviderProps {
 
 interface CanvasDataContext {
   data: ToppingObject[]
-  addLayer: (index: number, topping: ToppingObject) => void
+  addLayer: (topping: ToppingObject) => void
   replaceLayer: (index: number, topping: ToppingObject) => void
 }
 
@@ -20,9 +20,17 @@ export const CanvasDataProvider: FC<CanvasDataProviderProps> = ({
 }) => {
   const [canvasObjects, setCanvasObjects] = useState<ToppingObject[]>([])
 
-  const addLayer = (index: number, topping: ToppingObject) => {}
+  const addLayer = (topping: ToppingObject) => {
+    setCanvasObjects((prevData) => [...prevData, topping])
+  }
 
-  const replaceLayer = (index: number, topping: ToppingObject) => {}
+  const replaceLayer = (index: number, newTopping: ToppingObject) => {
+    setCanvasObjects((prevData) =>
+      prevData.map((prevObject, objectIndex) =>
+        index === objectIndex ? newTopping : prevObject
+      )
+    )
+  }
 
   return (
     <canvasDataContext.Provider
