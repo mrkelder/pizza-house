@@ -1,6 +1,6 @@
 import { PizzaTopping } from "@/src/lib/PizzaTopping"
 
-export const meatToppings = [
+const meatToppings = [
   new PizzaTopping({
     img: "/pizza_builder/bacon.webp",
     price: 0.56,
@@ -18,7 +18,7 @@ export const meatToppings = [
   }).getToppingObject()
 ]
 
-export const vegetableToppings = [
+const vegetableToppings = [
   new PizzaTopping({
     img: "/pizza_builder/peppers.png",
     price: 0.56,
@@ -46,7 +46,7 @@ export const vegetableToppings = [
   }).getToppingObject()
 ]
 
-export const otherToppings = [
+const otherToppings = [
   new PizzaTopping({
     img: "/pizza_builder/mushrooms.webp",
     price: 0.56,
@@ -57,4 +57,10 @@ export const otherToppings = [
     price: 0.16,
     name: "Olives"
   }).getToppingObject()
+]
+
+export const mockToppingsData = [
+  { name: "Meat", toppings: meatToppings },
+  { name: "Vegetables", toppings: vegetableToppings },
+  { name: "Other", toppings: otherToppings }
 ]
