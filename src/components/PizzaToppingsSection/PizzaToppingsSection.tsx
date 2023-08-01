@@ -8,7 +8,7 @@ import styles from "./pizzaToppingsSection.module.scss"
 interface PizzaToppingsSectionProps {
   name: string
   toppings: ToppingObject[]
-  onSelect?: () => unknown
+  onSelect?: (id: string) => unknown
 }
 
 export const PizzaToppingsSection: FC<PizzaToppingsSectionProps> = ({
@@ -20,7 +20,7 @@ export const PizzaToppingsSection: FC<PizzaToppingsSectionProps> = ({
 
   const onLabelInputChange = (id: string) => () => {
     setSelectedToppingId(id)
-    if (onSelect) onSelect()
+    if (onSelect) onSelect(id)
   }
 
   return (
