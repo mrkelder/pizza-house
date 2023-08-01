@@ -1,4 +1,9 @@
-import { PizzaTopping } from "@/src/lib/PizzaTopping"
+import { PizzaTopping, ToppingObject } from "@/src/lib/PizzaTopping"
+
+interface MockToppingsGroupData {
+  name: string
+  toppings: ToppingObject[]
+}
 
 const meatToppings = [
   new PizzaTopping({
@@ -59,7 +64,7 @@ const otherToppings = [
   }).getToppingObject()
 ]
 
-export const mockToppingsData = [
+export const mockToppingsData: MockToppingsGroupData[] = [
   { name: "Meat", toppings: meatToppings },
   { name: "Vegetables", toppings: vegetableToppings },
   { name: "Other", toppings: otherToppings }

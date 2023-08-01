@@ -10,9 +10,22 @@ import {
   PizzaBuilderCanvas,
   useCanvasData
 } from "@/src/components/PizzaBuilderCanvas"
+import { ToppingObject } from "@/src/lib/PizzaTopping"
 
 export const PageClientComponent: FC = () => {
-  const {} = useCanvasData()
+  const { canvasObjects, replaceLayer } = useCanvasData()
+
+  const allToppingObjects = mockToppingsData.reduce(
+    (prev, current) => [...prev, ...current.toppings],
+    [] as ToppingObject[]
+  )
+
+  const selectToppingLayer = (layerIndex: number) => (toppingId: string) => {
+    const toppingObject = allToppingObjects.find(
+      ({ id }) => id === toppingId
+    ) as ToppingObject
+    replaceLayer(layerIndex, toppingObject)
+  }
 
   return (
     <div className={styles.contentWrapper}>
@@ -20,11 +33,12 @@ export const PageClientComponent: FC = () => {
         <PizzaBuilderCanvas />
       </div>
       <div className={styles.toppings}>
-        {mockToppingsData.map(({ name, toppings }) => (
+        {mockToppingsData.map(({ name, toppings }, index) => (
           <PizzaToppingsSection
             key={StringFormatter.getIdSlugFromString(name)}
             name="Meat"
             toppings={toppings}
+            onSelect={selectToppingLayer(index)}
           />
         ))}
       </div>
