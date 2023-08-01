@@ -54,5 +54,3 @@ export const PizzaToppingsSection: FC<PizzaToppingsSectionProps> = ({
     </div>
   )
 }
-
-PizzaToppingsSection.defaultProps = {}
