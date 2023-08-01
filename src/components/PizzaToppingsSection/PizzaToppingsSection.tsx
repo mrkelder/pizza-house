@@ -8,20 +8,26 @@ import styles from "./pizzaToppingsSection.module.scss"
 interface PizzaToppingsSectionProps {
   name: string
   toppings: ToppingObject[]
+  onSelect?: () => unknown
 }
 
 const defaultProps: PizzaToppingsSectionProps = {
   name: "Category",
-  toppings: []
+  toppings: [],
+  onSelect: undefined
 }
 
 export const PizzaToppingsSection: FC<PizzaToppingsSectionProps> = ({
   name,
-  toppings
+  toppings,
+  onSelect
 } = defaultProps) => {
   const [selectedToppingId, setSelectedToppingId] = useState("non-existant-id")
 
-  const onLabelInputChange = (id: string) => () => setSelectedToppingId(id)
+  const onLabelInputChange = (id: string) => () => {
+    setSelectedToppingId(id)
+    if (onSelect) onSelect()
+  }
 
   return (
     <div className={styles.section}>
@@ -54,3 +60,5 @@ export const PizzaToppingsSection: FC<PizzaToppingsSectionProps> = ({
     </div>
   )
 }
+
+PizzaToppingsSection.defaultProps = {}
