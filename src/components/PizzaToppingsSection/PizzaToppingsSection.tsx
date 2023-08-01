@@ -11,17 +11,11 @@ interface PizzaToppingsSectionProps {
   onSelect?: () => unknown
 }
 
-const defaultProps: PizzaToppingsSectionProps = {
-  name: "Category",
-  toppings: [],
-  onSelect: undefined
-}
-
 export const PizzaToppingsSection: FC<PizzaToppingsSectionProps> = ({
-  name,
-  toppings,
-  onSelect
-} = defaultProps) => {
+  name = "Category",
+  toppings = [],
+  onSelect = undefined
+}) => {
   const [selectedToppingId, setSelectedToppingId] = useState("non-existant-id")
 
   const onLabelInputChange = (id: string) => () => {
