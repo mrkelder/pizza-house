@@ -36,7 +36,7 @@ export const PageClientComponent: FC = () => {
         {mockToppingsData.map(({ name, toppings }, index) => (
           <PizzaToppingsSection
             key={StringFormatter.getIdSlugFromString(name)}
-            name="Meat"
+            name={name}
             toppings={toppings}
             onSelect={selectToppingLayer(index)}
           />
