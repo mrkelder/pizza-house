@@ -30,7 +30,7 @@ export const PageClientComponent: FC = () => {
   return (
     <div className={styles.contentWrapper}>
       <div className={styles.stickyCanvasWrapper}>
-        <PizzaBuilderCanvas />
+        <PizzaBuilderCanvas toppingObjects={canvasObjects} />
       </div>
       <div className={styles.toppings}>
         {mockToppingsData.map(({ name, toppings }, index) => (

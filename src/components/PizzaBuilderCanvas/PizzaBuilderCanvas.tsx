@@ -6,14 +6,12 @@ import { env } from "@/src/lib/env"
 import styles from "./pizzaBuilderCanvas.module.scss"
 
 interface PizzaBuilderCanvasProps {
-  // toppingObjects: ToppingObject[]
+  toppingObjects: ToppingObject[]
 }
 
-export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = (
-  {
-    // toppingObjects
-  }
-) => {
+export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = ({
+  toppingObjects
+}) => {
   // TODO: remember, canvas can be unsupported
   const cachedImages = useMemo<Map<string, HTMLImageElement>>(
     () => new Map(),
@@ -59,34 +57,27 @@ export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = (
     [cachedImages]
   )
 
-  // useEffect(
-  //   () =>
-  //     modifyCanvasIfAvailable((ctx) => {
-  //       const unloadedImages: any[] = []
-  //       for (const toppingObject of toppingObjects) {
-  //         const toppingImage = new Image()
-  //         toppingImage.src = env.hostname + toppingObject.img
-  //         ctx.drawImage(toppingImage, 0, 0, canvasWidth, canvasHeight)
-  //         unloadedImages.push()
-  //       }
+  useEffect(() => {
+    modifyCanvasIfAvailable(async (ctx) => {
+      const unloadedImages: Promise<HTMLImageElement>[] = []
+      for (const toppingObject of toppingObjects) {
+        unloadedImages.push(
+          getImageAndCacheIt(env.hostname + toppingObject.img)
+        )
+      }
 
-  //       console.log(unloadedImages)
-
-  //       window.addEventListener("resize", setCanvasDimensions)
-  //       setCanvasDimensions()
-
-  //       return () => {
-  //         window.removeEventListener("resize", setCanvasDimensions)
-  //       }
-  //     }),
-  //   [
-  //     canvasHeight,
-  //     canvasWidth,
-  //     isCanvasLoaded,
-  //     modifyCanvasIfAvailable,
-  //     toppingObjects
-  //   ]
-  // )
+      const loadedImages = await Promise.all(unloadedImages)
+      loadedImages.forEach((image) =>
+        ctx.drawImage(image, 0, 0, canvasWidth, canvasHeight)
+      )
+    })
+  }, [
+    canvasHeight,
+    canvasWidth,
+    getImageAndCacheIt,
+    modifyCanvasIfAvailable,
+    toppingObjects
+  ])
 
   useEffect(() => {
     function setCanvasDimensions() {
