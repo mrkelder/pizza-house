@@ -57,6 +57,17 @@ export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = ({
     [cachedImages]
   )
 
+  const rerenderCanvas = useCallback(
+    async (ctx: CanvasRenderingContext2D) => {
+      const pizzaBaseImage = await getImageAndCacheIt(
+        env.hostname + "pizza_builder/base.webp"
+      )
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+      ctx.drawImage(pizzaBaseImage, 0, 0, canvasWidth, canvasHeight)
+    },
+    [canvasHeight, canvasWidth, getImageAndCacheIt]
+  )
+
   useEffect(() => {
     modifyCanvasIfAvailable(async (ctx) => {
       const unloadedImages: Promise<HTMLImageElement>[] = []
@@ -67,6 +78,7 @@ export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = ({
       }
 
       const loadedImages = await Promise.all(unloadedImages)
+      await rerenderCanvas(ctx)
       loadedImages.forEach((image) =>
         ctx.drawImage(image, 0, 0, canvasWidth, canvasHeight)
       )
@@ -76,6 +88,7 @@ export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = ({
     canvasWidth,
     getImageAndCacheIt,
     modifyCanvasIfAvailable,
+    rerenderCanvas,
     toppingObjects
   ])
 
@@ -99,17 +112,15 @@ export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = ({
 
   useEffect(() => {
     modifyCanvasIfAvailable(async (ctx) => {
-      const pizzaBaseImage = await getImageAndCacheIt(
-        env.hostname + "pizza_builder/base.webp"
-      )
-      ctx.drawImage(pizzaBaseImage, 0, 0, canvasWidth, canvasHeight)
+      await rerenderCanvas(ctx)
     })
   }, [
     canvasHeight,
     canvasWidth,
     getImageAndCacheIt,
     isCanvasLoaded,
-    modifyCanvasIfAvailable
+    modifyCanvasIfAvailable,
+    rerenderCanvas
   ])
 
   return (
