@@ -25,17 +25,17 @@ export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = (
   const [canvasWidth, setCanvasWidth] = useState(0)
   const [canvasHeight, setCanvasHeight] = useState(0)
 
-  // const modifyCanvasIfAvailable = useCallback(
-  //   (callback: (ctx: CanvasRenderingContext2D) => (() => void) | void) => {
-  //     if (canvasRef.current && isCanvasLoaded) {
-  //       const ctx = canvasRef.current.getContext(
-  //         "2d"
-  //       ) as CanvasRenderingContext2D
-  //       return callback(ctx)
-  //     }
-  //   },
-  //   [isCanvasLoaded]
-  // )
+  const modifyCanvasIfAvailable = useCallback(
+    (callback: (ctx: CanvasRenderingContext2D) => Promise<unknown>) => {
+      if (canvasRef.current && isCanvasLoaded) {
+        const ctx = canvasRef.current.getContext(
+          "2d"
+        ) as CanvasRenderingContext2D
+        return callback(ctx)
+      }
+    },
+    [isCanvasLoaded]
+  )
 
   const loadImage = (src: string): Promise<HTMLImageElement> =>
     new Promise((res, rej) => {
@@ -107,21 +107,19 @@ export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = (
   }, [])
 
   useEffect(() => {
-    // TODO: ugly code (function has to do 1 thing only)
-    const drawPizzaBase = async () => {
-      if (canvasRef.current && isCanvasLoaded) {
-        const ctx = canvasRef.current.getContext(
-          "2d"
-        ) as CanvasRenderingContext2D
-        const pizzaBaseImage = await getImageAndCacheIt(
-          env.hostname + "pizza_builder/base.webp"
-        )
-        ctx.drawImage(pizzaBaseImage, 0, 0, canvasWidth, canvasHeight)
-      }
-    }
-
-    drawPizzaBase()
-  }, [canvasHeight, canvasWidth, getImageAndCacheIt, isCanvasLoaded])
+    modifyCanvasIfAvailable(async (ctx) => {
+      const pizzaBaseImage = await getImageAndCacheIt(
+        env.hostname + "pizza_builder/base.webp"
+      )
+      ctx.drawImage(pizzaBaseImage, 0, 0, canvasWidth, canvasHeight)
+    })
+  }, [
+    canvasHeight,
+    canvasWidth,
+    getImageAndCacheIt,
+    isCanvasLoaded,
+    modifyCanvasIfAvailable
+  ])
 
   return (
     <div className={styles.canvasWrapper} ref={canvasWrapperRef}>
