@@ -6,11 +6,11 @@ import { env } from "@/src/lib/env"
 import styles from "./pizzaBuilderCanvas.module.scss"
 
 interface PizzaBuilderCanvasProps {
-  toppingObjects: ToppingObject[]
+  canvasObjects: (ToppingObject | undefined)[]
 }
 
 export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = ({
-  toppingObjects
+  canvasObjects
 }) => {
   // TODO: remember, canvas can be unsupported
   const cachedImages = useMemo<Map<string, HTMLImageElement>>(
@@ -71,6 +71,7 @@ export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = ({
   useEffect(() => {
     modifyCanvasIfAvailable(async (ctx) => {
       const unloadedImages: Promise<HTMLImageElement>[] = []
+      const toppingObjects = canvasObjects.filter((i) => i) as ToppingObject[]
       for (const toppingObject of toppingObjects) {
         unloadedImages.push(
           getImageAndCacheIt(env.hostname + toppingObject.img)
@@ -89,7 +90,7 @@ export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = ({
     getImageAndCacheIt,
     modifyCanvasIfAvailable,
     rerenderCanvas,
-    toppingObjects
+    canvasObjects
   ])
 
   useEffect(() => {
