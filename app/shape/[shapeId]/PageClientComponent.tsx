@@ -11,6 +11,7 @@ import {
   useCanvasData
 } from "@/src/components/PizzaBuilderCanvas"
 import { ToppingObject } from "@/src/lib/PizzaTopping"
+import { Button } from "@/src/components/Button"
 
 export const PageClientComponent: FC = () => {
   const { canvasObjects, replaceLayer } = useCanvasData()
@@ -41,6 +42,7 @@ export const PageClientComponent: FC = () => {
             onSelect={selectToppingLayer(index)}
           />
         ))}
+        <Button style={{ maxWidth: "inherit" }}>Add to cart</Button>
       </div>
     </div>
   )
