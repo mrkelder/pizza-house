@@ -14,7 +14,7 @@ export const ReactToastifyWrapper: FC<ReactToastifyWrapperProps> = ({
   return (
     <>
       {children}
-      <ToastContainer />
+      <ToastContainer position="bottom-left" theme="light" />
     </>
   )
 }
