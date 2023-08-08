@@ -4,6 +4,7 @@ import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { ToppingObject } from "@/src/lib/PizzaTopping"
 import { env } from "@/src/lib/env"
 import styles from "./pizzaBuilderCanvas.module.scss"
+import { toast } from "react-toastify"
 
 interface PizzaBuilderCanvasProps {
   canvasObjects: (ToppingObject | undefined)[]
@@ -12,7 +13,6 @@ interface PizzaBuilderCanvasProps {
 export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = ({
   canvasObjects
 }) => {
-  // TODO: remember, canvas can be unsupported
   const cachedImages = useMemo<Map<string, HTMLImageElement>>(
     () => new Map(),
     []
@@ -26,10 +26,8 @@ export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = ({
   const modifyCanvasIfAvailable = useCallback(
     (callback: (ctx: CanvasRenderingContext2D) => Promise<unknown>) => {
       if (canvasRef.current && isCanvasLoaded) {
-        const ctx = canvasRef.current.getContext(
-          "2d"
-        ) as CanvasRenderingContext2D
-        return callback(ctx)
+        const ctx = canvasRef.current.getContext("2d")
+        if (ctx) return callback(ctx)
       }
     },
     [isCanvasLoaded]
@@ -67,6 +65,20 @@ export const PizzaBuilderCanvas: FC<PizzaBuilderCanvasProps> = ({
     },
     [canvasHeight, canvasWidth, getImageAndCacheIt]
   )
+
+  useEffect(() => {
+    if (isCanvasLoaded) {
+      const ctx = canvasRef.current?.getContext("2d")
+      if (!ctx) {
+        toast.warn(
+          "Sorry, canvas is unavailable in your browser, we cannot visually display your selection.",
+          {
+            autoClose: false
+          }
+        )
+      }
+    }
+  }, [isCanvasLoaded])
 
   useEffect(() => {
     modifyCanvasIfAvailable(async (ctx) => {
