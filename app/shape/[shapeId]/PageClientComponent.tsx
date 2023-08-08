@@ -10,8 +10,8 @@ import {
   PizzaBuilderCanvas,
   useCanvasData
 } from "@/src/components/PizzaBuilderCanvas"
-import { ToppingObject } from "@/src/lib/PizzaTopping"
 import { Button } from "@/src/components/Button"
+import { ToppingObject } from "@/src/lib/PizzaTopping"
 
 export const PageClientComponent: FC = () => {
   const { canvasObjects, replaceLayer } = useCanvasData()
