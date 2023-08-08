@@ -2,6 +2,7 @@ import { Header } from "@/src/components/Header"
 import { Inter } from "next/font/google"
 
 import "./globals.scss"
+import { ReactToastifyWrapper } from "@/src/components/ReactToastifyWrapper"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -20,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        {children}
+        <ReactToastifyWrapper>{children}</ReactToastifyWrapper>
       </body>
     </html>
   )

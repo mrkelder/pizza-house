@@ -1,0 +1,40 @@
+@import "themeColors";
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 3px $primary-color solid;
+  background-color: $secondary-color;
+
+  > b {
+    font-style: italic;
+    font-size: 1.2rem;
+  }
+}
+
+.toppingsList {
+  display: flex;
+  max-width: 250px;
+  gap: 24px;
+  overflow-x: auto;
+}
+
+.topping {
+  cursor: pointer;
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  * {
+    margin: 0;
+  }
+
+  p {
+    width: max-content;
+  }
+}
